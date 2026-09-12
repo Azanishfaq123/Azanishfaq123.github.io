@@ -1,899 +1,533 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdul Azan â€” .NET Software Developer</title>
-    <meta
-      name="description"
-      content="Abdul Azan is a .NET software developer in Sialkot building ERP, POS, and business systems that companies use every day."
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23081018'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='28' fill='%23c4a574' font-family='Georgia'%3EAA%3C/text%3E%3C/svg%3E"
-    />
+    <title>Abdul Azan — .NET Software Developer</title>
+    <meta name="description" content="Abdul Azan is a .NET software developer in Sialkot building ERP, POS, and business systems that companies use every day." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a1628'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='26' fill='%23c9a36a' font-family='Georgia'%3EAA%3C/text%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
 :root {
-  --bg: #081018;
-  --panel: #101c28;
-  --ink: #f3efe6;
-  --muted: #8d9bab;
-  --line: rgba(243, 239, 230, 0.1);
-  --gold: #c4a574;
-  --gold-2: #e4d2b0;
-  --cream: #e8e2d6;
-  --rail: 240px;
-  --max: 1040px;
+    --navy: #0a1628;
+    --navy-2: #12233d;
+    --steel: #2f6f92;
+    --copper: #c9a36a;
+    --paper: #f5f7fa;
+    --card: #ffffff;
+    --ink: #14202e;
+    --muted: #5c6776;
+    --line: #d9e0e8;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Manrope", "Segoe UI", sans-serif;
+    --shadow: 0 18px 40px rgba(10, 22, 40, 0.12);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --header: 76px;
 }
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  font-family: Outfit, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  min-height: 100vh;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    background: var(--paper);
 }
-
-img {
-  max-width: 100%;
-  display: block;
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; z-index: 40; background: var(--copper); color: var(--navy); padding: 0.4rem 0.8rem; }
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 30; background: transparent; }
+.progress span { display: block; height: 100%; width: 0; background: var(--copper); transition: width 0.08s linear; }
+.wrap { width: min(1120px, calc(100% - 2.4rem)); margin: 0 auto; }
+.header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid transparent;
+    backdrop-filter: blur(14px);
+    animation: dropIn 0.7s var(--ease) both;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+.header.scrolled { border-color: var(--line); box-shadow: 0 8px 24px rgba(10, 22, 40, 0.06); }
+.header-inner { min-height: var(--header); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--navy); font-weight: 700; }
+.logo span, .footer .logo span {
+    width: 34px; height: 34px; display: grid; place-items: center;
+    background: var(--navy); color: var(--copper); font-family: var(--serif); font-size: 0.95rem;
 }
-
-.skip {
-  position: absolute;
-  left: 12px;
-  top: -40px;
-  z-index: 80;
-  padding: 8px 12px;
-  background: var(--gold);
-  color: #1a140c;
-  font-weight: 600;
-}
-
-.skip:focus {
-  top: 12px;
-}
-
-.menu-btn {
-  display: none;
-}
-
-.rail {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: var(--rail);
-  padding: 36px 28px;
-  border-right: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 92%, #000);
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  z-index: 20;
-}
-
-.mark {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-}
-
-.rail-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.rail-nav a {
-  color: var(--muted);
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.rail-nav a:hover,
-.rail-nav a.active {
-  color: var(--ink);
-}
-
-.rail-foot {
-  margin-top: auto;
-}
-
-.cv {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: var(--gold);
-  font-weight: 600;
-  border-bottom: 1px solid transparent;
-}
-
-.cv:hover {
-  border-bottom-color: var(--gold);
-}
-
-.rail-foot p {
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-main {
-  margin-left: var(--rail);
-  padding: 48px 7vw 40px;
-}
-
-.kicker {
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-h1,
-h2,
-h3 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-}
-
-h1 {
-  font-size: clamp(3.4rem, 8vw, 6.4rem);
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  max-width: 22ch;
-}
-
+.site-nav { display: flex; align-items: center; gap: 1.15rem; }
+.site-nav a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 600; position: relative; }
+.site-nav a:hover, .site-nav a.active { color: var(--navy); }
+.site-nav a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: var(--copper); }
+.nav-cv { background: var(--navy); color: #fff !important; padding: 0.55rem 0.85rem; }
+.nav-cv:hover { background: var(--steel); color: #fff !important; }
+.nav-cv.active::after { display: none; }
+.menu-btn { display: none; width: 2.5rem; height: 2.5rem; border: 0; background: var(--navy); }
+.menu-btn span { display: block; height: 1px; margin: 0.35rem 0.5rem; background: var(--copper); }
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 400px);
-  gap: 64px;
-  align-items: center;
-  min-height: calc(100vh - 120px);
-  padding: 28px 0 56px;
-  border-bottom: 1px solid var(--line);
+    position: relative; overflow: hidden;
+    background: radial-gradient(700px 280px at 90% 10%, rgba(201, 163, 106, 0.16), transparent 55%), linear-gradient(180deg, var(--navy) 0%, #08111d 100%);
+    color: #e8eef5; padding: 3.2rem 0 0;
 }
-
-.role {
-  margin-top: 8px;
-  font-size: 1.2rem;
-  color: var(--gold-2);
+.orb { position: absolute; border-radius: 50%; filter: blur(42px); pointer-events: none; }
+.orb-1 { width: 220px; height: 220px; left: -40px; top: 40px; background: rgba(47, 111, 146, 0.45); animation: drift 9s ease-in-out infinite; }
+.orb-2 { width: 280px; height: 280px; right: 8%; top: -50px; background: rgba(201, 163, 106, 0.22); animation: drift 11s ease-in-out infinite reverse; }
+.orb-3 { width: 160px; height: 160px; left: 42%; bottom: 30px; background: rgba(47, 111, 146, 0.28); animation: drift 8s ease-in-out infinite 1s; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2.8rem; align-items: center; min-height: 62vh; padding-bottom: 2.2rem; }
+.kicker { margin: 0 0 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.72rem; font-weight: 700; color: var(--copper); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; }
+h1 { margin: 0; font-size: clamp(3rem, 6vw, 5.4rem); color: #fff; letter-spacing: -0.03em; }
+.role { margin: 0.55rem 0 0; min-height: 1.6em; letter-spacing: 0.12em; text-transform: uppercase; color: #9eb4c8; font-weight: 700; }
+.caret { display: inline-block; width: 2px; height: 1em; margin-left: 3px; background: var(--copper); vertical-align: -2px; animation: blink 0.7s steps(1) infinite; }
+.lede { max-width: 38rem; color: #b7c4d2; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
+.btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; text-decoration: none; padding: 0.85rem 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.74rem; font-weight: 700; transition: transform 0.3s var(--ease), background 0.3s ease, color 0.3s ease; }
+.btn-gold { background: var(--copper); color: var(--navy); }
+.btn-gold::before { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.55) 45%, transparent 70%); transform: translateX(-120%); animation: shine 2.6s ease-in-out infinite; }
+.btn-gold:hover { transform: translateY(-3px) scale(1.03); background: #d8b57a; }
+.btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: #fff; }
+.btn-ghost:hover { background: #fff; color: var(--navy); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; background: var(--card); box-shadow: var(--shadow); position: relative; top: 28px; }
+.stats div { padding: 1.15rem 1.1rem 1.2rem; border-right: 1px solid var(--line); }
+.stats div:last-child { border-right: 0; }
+.stats dt { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.stats dd { margin: 0.25rem 0 0; font-family: var(--serif); font-size: 1.8rem; color: var(--navy); }
+.stats div:last-child dd { font-size: 1.15rem; line-height: 1.25; padding-top: 0.3rem; }
+.portrait { margin: 0; position: relative; z-index: 1; background: #fff; padding: 0.7rem; box-shadow: var(--shadow); animation: photoIn 1s var(--ease) both, floatCard 4.8s ease-in-out 1s infinite; }
+.portrait::after { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(201, 163, 106, 0.4); pointer-events: none; animation: glow 2.8s ease-in-out infinite; }
+.portrait img { display: block; width: 100%; height: auto; object-fit: cover; object-position: top; filter: contrast(1.04) saturate(0.92); }
+.hero-copy .kicker, .hero-copy h1, .hero-copy .role, .hero-copy .lede, .hero-copy .hero-actions { animation: rise 0.85s var(--ease) both; }
+.hero-copy h1 { animation-delay: 0.08s; animation-name: clipUp; }
+.hero-copy .role { animation-delay: 0.16s; }
+.hero-copy .lede { animation-delay: 0.24s; }
+.hero-copy .hero-actions { animation-delay: 0.32s; }
+.ticker { overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 0; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.ticker-track { display: flex; gap: 2rem; width: max-content; animation: marquee 22s linear infinite; color: #9eb4c8; font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; }
+.ticker-track span::after { content: " • "; color: var(--copper); }
+.block { padding: 5.4rem 0 4.2rem; background: var(--card); }
+.block.alt { background: var(--paper); }
+.block.contact { background: var(--navy); color: #dce4ee; }
+.block.contact h2 { color: #fff; }
+.block.contact .lede { color: #b7c4d2; }
+.block-head h2 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); max-width: 16ch; color: var(--navy); }
+.about-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 2.2rem; margin-top: 1.8rem; }
+.about-grid > p { margin: 0; color: var(--muted); font-size: 1.06rem; }
+.facts { background: var(--paper); border: 1px solid var(--line); }
+.facts div { padding: 0.95rem 1.05rem; border-bottom: 1px solid var(--line); }
+.facts div:last-child { border-bottom: 0; }
+.facts span { display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel); }
+.facts strong { font-family: var(--serif); font-size: 1.25rem; }
+.timeline { list-style: none; margin: 2rem 0 0; padding: 0; }
+.timeline > li { display: grid; grid-template-columns: 10rem 1fr; gap: 1.6rem; padding: 1.4rem 0; border-top: 1px solid var(--line); }
+.when { color: var(--steel); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.74rem; font-weight: 700; }
+.timeline h3 { margin: 0; font-size: 1.7rem; color: var(--navy); }
+.org { margin: 0.2rem 0 0.7rem; color: var(--muted); }
+.timeline ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.timeline li li { display: list-item; grid-template-columns: none; padding: 0.15rem 0; border: 0; }
+.award { display: inline-block; margin: 0.9rem 0 0; padding: 0.25rem 0.55rem; background: rgba(201, 163, 106, 0.14); color: #8a6c36; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 2rem; }
+.projects article { background: var(--paper); border: 1px solid var(--line); padding: 1.4rem; min-height: 12.5rem; transition: transform 0.35s var(--ease), box-shadow 0.35s ease; }
+.projects article:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow); background: #fff; }
+.num { font-family: var(--serif); color: var(--copper); font-size: 1.3rem; }
+.tag { margin: 0.3rem 0 0.2rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); font-weight: 700; }
+.projects h3 { margin: 0 0 0.45rem; font-size: 1.55rem; color: var(--navy); }
+.projects p { margin: 0; color: var(--muted); }
+.skill-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.8rem; }
+.skill-wrap > div { background: var(--card); border: 1px solid var(--line); padding: 1.15rem; }
+.skill-wrap h3 { margin: 0 0 0.75rem; font-size: 1.25rem; color: var(--navy); }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0; padding: 0; }
+.chips li { background: #eef3f7; color: var(--navy); padding: 0.35rem 0.65rem; font-size: 0.84rem; font-weight: 600; transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+.chips li:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+.edu { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.4rem; }
+.edu > div { background: var(--card); border: 1px solid var(--line); padding: 1.15rem 1.15rem 0.3rem; }
+.edu ul { list-style: none; margin: 0.6rem 0 0; padding: 0; }
+.edu li { padding: 0.7rem 0; border-top: 1px solid var(--line); }
+.edu strong { display: block; font-family: var(--serif); font-size: 1.2rem; color: var(--navy); }
+.edu span { color: var(--muted); font-size: 0.92rem; }
+.contact-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-top: 1.8rem; }
+.contact-list a, .contact-list p { margin: 0; text-decoration: none; color: inherit; background: #12233d; border: 1px solid #24344d; padding: 1rem 1.1rem; transition: transform 0.3s var(--ease), border-color 0.3s ease; }
+.contact-list a:hover { transform: translateY(-3px); border-color: var(--copper); }
+.contact-list span { display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); }
+.contact-list strong { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: #fff; }
+.contact-list .btn { justify-self: start; align-self: center; background: var(--copper); color: var(--navy); border: 0; }
+.footer { background: #070e18; color: #9aa8b8; padding: 2.6rem 0 1.3rem; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 1.6rem; padding-bottom: 1.6rem; border-bottom: 1px solid #1c2a3d; }
+.footer .logo { color: #fff; margin: 0 0 0.6rem; }
+.footer a { display: block; color: #9aa8b8; text-decoration: none; margin: 0.25rem 0; }
+.footer a:hover { color: var(--copper); }
+.foot-label { margin: 0 0 0.5rem; color: #fff; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.72rem; }
+.footer-bar { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; font-size: 0.86rem; }
+.reveal { opacity: 0; transform: translateY(40px); filter: blur(8px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease), filter 0.85s var(--ease); }
+.reveal.from-left { transform: translateX(-50px); }
+.reveal.from-right { transform: translateX(50px); }
+.reveal.zoom { transform: scale(0.88); }
+.reveal.in { opacity: 1; transform: none; filter: none; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes clipUp { from { opacity: 0; transform: translateY(48px); clip-path: inset(100% 0 0 0); } to { opacity: 1; transform: none; clip-path: inset(0); } }
+@keyframes photoIn { from { opacity: 0; transform: translateY(28px) scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+@keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(24px, -18px) scale(1.08); } }
+@keyframes glow { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.8; } }
+@keyframes shine { 0% { transform: translateX(-120%); } 40%, 100% { transform: translateX(120%); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes blink { 50% { opacity: 0; } }
+@media (max-width: 900px) {
+    .menu-btn { display: block; }
+    .site-nav { display: none; position: absolute; top: var(--header); left: 0; right: 0; background: #fff; flex-direction: column; padding: 1rem 1.2rem 1.2rem; border-bottom: 1px solid var(--line); align-items: flex-start; }
+    .site-nav.open { display: flex; }
+    .site-nav a.active::after { display: none; }
+    .hero-grid, .about-grid, .projects, .skill-wrap, .edu, .contact-list, .timeline > li, .footer-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; top: 0; }
+    .stats div:nth-child(2) { border-right: 0; }
+    .hero { padding-top: 1.6rem; }
+    .hero-grid { min-height: auto; }
+    .ticker { display: none; }
 }
-
-.lede {
-  margin-top: 22px;
-  max-width: 42ch;
-  color: var(--muted);
-  font-size: 1.08rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: transform 0.2s, background 0.2s, border-color 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-gold {
-  background: var(--gold);
-  color: #1a140c;
-}
-
-.btn-ghost {
-  border: 1px solid var(--line);
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 40px;
-  padding-top: 28px;
-  border-top: 1px solid var(--line);
-}
-
-.stats dt {
-  color: var(--muted);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.stats dd {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 1.7rem;
-}
-
-.print {
-  background: var(--cream);
-  padding: 12px 12px 44px;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.38);
-  transform: rotate(1.2deg);
-  width: min(100%, 400px);
-  justify-self: end;
-}
-
-.print img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  max-height: 520px;
-  object-fit: cover;
-  object-position: center 12%;
-}
-
-.print figcaption {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 14px;
-  color: #5c5348;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.block {
-  padding: 88px 0 8px;
-}
-
-.block-head {
-  margin-bottom: 36px;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 0.9fr;
-  gap: 28px;
-}
-
-.about-grid > p,
-.timeline p,
-.projects p,
-.edu span {
-  color: var(--muted);
-}
-
-.facts {
-  display: grid;
-  gap: 16px;
-  padding: 20px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-}
-
-.facts span {
-  display: block;
-  color: var(--muted);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 4px;
-}
-
-.timeline {
-  list-style: none;
-  display: grid;
-  gap: 36px;
-}
-
-.timeline li {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 28px;
-  padding-bottom: 36px;
-  border-bottom: 1px solid var(--line);
-}
-
-.when {
-  color: var(--gold);
-  font-size: 0.92rem;
-  font-weight: 600;
-}
-
-.org {
-  margin: 6px 0 14px;
-}
-
-.timeline ul {
-  padding-left: 18px;
-  display: grid;
-  gap: 8px;
-}
-
-.award {
-  display: inline-block;
-  margin-top: 16px;
-  color: var(--gold-2);
-  font-size: 0.9rem;
-}
-
-.projects {
-  display: grid;
-  gap: 0;
-}
-
-.projects article {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 20px;
-  padding: 28px 0;
-  border-top: 1px solid var(--line);
-  transition: padding-left 0.25s, background 0.25s;
-}
-
-.projects article:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.projects article:hover {
-  padding-left: 12px;
-}
-
-.num {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 1.6rem;
-  color: var(--gold);
-}
-
-.tag {
-  color: var(--gold);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.projects h3,
-.timeline h3,
-.skill-wrap h3 {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-.skill-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-}
-
-.skill-wrap h3 {
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-}
-
-.chips {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.chips li {
-  padding: 8px 14px;
-  border: 1px solid var(--line);
-  color: var(--gold-2);
-  font-size: 0.92rem;
-}
-
-.edu {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 36px;
-  margin-top: 56px;
-  padding-top: 36px;
-  border-top: 1px solid var(--line);
-}
-
-.edu ul {
-  list-style: none;
-  display: grid;
-  gap: 16px;
-}
-
-.edu strong {
-  display: block;
-}
-
-.contact .lede {
-  margin-top: 16px;
-}
-
-.contact-list {
-  display: grid;
-  gap: 0;
-}
-
-.contact-list a,
-.contact-list p {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid var(--line);
-}
-
-.contact-list p:last-child,
-.contact-list a:last-of-type {
-  border-bottom: 1px solid var(--line);
-}
-
-.contact-list span {
-  color: var(--muted);
-  min-width: 110px;
-}
-
-.contact-list a:hover strong {
-  color: var(--gold);
-}
-
-.foot {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 80px;
-  padding: 24px 0 12px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-@media (max-width: 980px) {
-  .rail {
-    transform: translateX(-100%);
-    transition: transform 0.25s ease;
-  }
-
-  body.nav-open .rail {
-    transform: none;
-  }
-
-  .menu-btn {
-    display: grid;
-    place-items: center;
-    position: fixed;
-    top: 18px;
-    right: 18px;
-    z-index: 30;
-    width: 46px;
-    height: 46px;
-    border: 1px solid var(--line);
-    background: var(--bg);
-    cursor: pointer;
-  }
-
-  .menu-btn span {
-    display: block;
-    width: 18px;
-    height: 1.5px;
-    background: var(--ink);
-  }
-
-  .menu-btn span + span {
-    margin-top: 6px;
-  }
-
-  main {
-    margin-left: 0;
-    padding: 28px 6vw 32px;
-  }
-
-  .hero,
-  .about-grid,
-  .timeline li,
-  .skill-wrap,
-  .edu,
-  .contact-list a,
-  .contact-list p,
-  .stats,
-  .foot {
-    grid-template-columns: 1fr;
-    display: grid;
-  }
-
-  .hero {
-    min-height: auto;
-    gap: 36px;
-  }
-
-  .print {
-    max-width: 420px;
-  }
-
-  .contact-list a,
-  .contact-list p {
-    align-items: start;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .btn,
-  .projects article {
-    transition: none;
-  }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
 }
-
     </style>
-  </head>
-  <body>
+</head>
+<body>
+    <div class="progress" aria-hidden="true"><span></span></div>
     <a class="skip" href="#main">Skip to content</a>
 
-    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="rail">
-      <span></span>
-      <span></span>
-    </button>
-
-    <aside class="rail" id="rail">
-      <a class="mark" href="#top">AA</a>
-      <nav class="rail-nav" aria-label="Primary">
-        <a href="#top" data-nav="top">Intro</a>
-        <a href="#about" data-nav="about">About</a>
-        <a href="#experience" data-nav="experience">Experience</a>
-        <a href="#work" data-nav="work">Work</a>
-        <a href="#skills" data-nav="skills">Skills</a>
-        <a href="#contact" data-nav="contact">Contact</a>
-      </nav>
-      <div class="rail-foot">
-        <a class="cv" href="Abdul_Azan_CV.pdf" download>Download CV</a>
-        <p>Sialkot, PK</p>
-      </div>
-    </aside>
+    <header class="header">
+        <div class="wrap header-inner">
+            <a class="logo" href="#top"><span>AA</span> Abdul Azan</a>
+            <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+                <span></span><span></span>
+            </button>
+            <nav id="site-nav" class="site-nav" aria-label="Primary">
+                <a href="#top" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#work">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+                <a class="nav-cv" href="Abdul_Azan_CV.pdf" download>Download CV</a>
+            </nav>
+        </div>
+    </header>
 
     <main id="main">
-      <section class="hero" id="top">
-        <div class="hero-copy">
-          <p class="kicker">NS Software Solution Â· Sialkot</p>
-          <h1>Abdul Azan</h1>
-          <p class="role">.NET Software Developer</p>
-          <p class="lede">
-            Building ERP, POS and business solutions that companies rely on
-            every day â€” desktop systems, SQL Server, and the reports people
-            actually print.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-gold" href="#work">See selected work</a>
-            <a class="btn btn-ghost" href="#contact">Get in touch</a>
-          </div>
-          <dl class="stats">
-            <div>
-              <dt>Years</dt>
-              <dd>3+</dd>
+        <section class="hero" id="top">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="wrap hero-grid">
+                <div class="hero-copy">
+                    <p class="kicker">Available for hire · Sialkot, Pakistan</p>
+                    <h1>Abdul Azan</h1>
+                    <p class="role"><span class="typed" data-text=".NET Software Developer"></span><span class="caret"></span></p>
+                    <p class="lede">Building ERP, POS and business solutions that companies rely on every day.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-gold" href="#work">View projects</a>
+                        <a class="btn btn-ghost" href="#contact">Contact me</a>
+                    </div>
+                </div>
+                <figure class="portrait">
+                    <img src="pic.jpeg" alt="Portrait of Abdul Azan" width="800" height="1067" />
+                </figure>
             </div>
-            <div>
-              <dt>Solutions</dt>
-              <dd>6+</dd>
+            <div class="ticker" aria-hidden="true">
+                <div class="ticker-track">
+                    <span>C# / .NET</span><span>SQL Server</span><span>WinForms</span><span>Database design</span><span>Java / Android</span><span>RDLC reporting</span><span>Git</span><span>Visual Studio</span><span>Android Studio</span><span>ADO.NET</span>
+                    <span>C# / .NET</span><span>SQL Server</span><span>WinForms</span><span>Database design</span><span>Java / Android</span><span>RDLC reporting</span><span>Git</span><span>Visual Studio</span><span>Android Studio</span><span>ADO.NET</span>
+                </div>
             </div>
-            <div>
-              <dt>Awards</dt>
-              <dd>2</dd>
+            <div class="wrap">
+                <dl class="stats">
+                    <div><dt>Years</dt><dd data-count="3" data-suffix="+">0+</dd></div>
+                    <div><dt>Solutions</dt><dd data-count="6" data-suffix="+">0+</dd></div>
+                    <div><dt>Awards</dt><dd data-count="2" data-suffix="">0</dd></div>
+                    <div><dt>Platforms</dt><dd>Desktop &amp; Mobile</dd></div>
+                </dl>
             </div>
-            <div>
-              <dt>Platforms</dt>
-              <dd>Desktop &amp; Mobile</dd>
-            </div>
-          </dl>
-        </div>
+        </section>
 
-        <figure class="print">
-          <img src="pic.jpeg" alt="Portrait of Abdul Azan in a navy suit" width="800" height="1067" />
-          <figcaption>
-            <span>Portrait</span>
-            <span>Sialkot, Pakistan</span>
-          </figcaption>
-        </figure>
-      </section>
+        <section class="block" id="about">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <p class="kicker">About</p>
+                    <h2>Software that survives a busy counter.</h2>
+                </div>
+                <div class="about-grid">
+                    <p class="reveal from-left d1">Results-driven Software Developer with 3+ years designing and developing business-critical desktop and mobile applications. Specialized in C# / .NET (WinForms) and SQL Server. Proven track record delivering ERP, POS, distribution, and leasing solutions. Strong database design, query optimization, and reporting. Writes clean, maintainable code with a focus on performance. Award-winning UI designer.</p>
+                    <aside class="facts reveal from-right d2">
+                        <div><span>Focus</span><strong>ERP · POS · SQL</strong></div>
+                        <div><span>Company</span><strong>NS Software Solution</strong></div>
+                        <div><span>Languages</span><strong>English · Urdu · Punjabi</strong></div>
+                    </aside>
+                </div>
+            </div>
+        </section>
 
-      <section class="block" id="about">
-        <div class="block-head">
-          <p class="kicker">About</p>
-          <h2>Software that survives a busy counter.</h2>
-        </div>
-        <div class="about-grid">
-          <p>
-            Iâ€™m a results-driven developer with 3+ years designing
-            business-critical desktop and mobile applications. I specialise in
-            C# / .NET (WinForms) and SQL Server â€” schema design, query
-            tuning, and RDLC reporting.
-          </p>
-          <p>
-            Most of my work is ERP, POS, distribution and leasing software that
-            shops and offices use all day. I write clean, maintainable code
-            with a bias for speed, and Iâ€™ve been recognised for both
-            performance and UI design.
-          </p>
-          <aside class="facts">
-            <div>
-              <span>Focus</span>
-              <strong>ERP Â· POS Â· SQL</strong>
+        <section class="block alt" id="experience">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <p class="kicker">Experience</p>
+                    <h2>Where the work happened.</h2>
+                </div>
+                <ol class="timeline">
+                    <li class="reveal from-left">
+                        <div class="when">2023 — Present</div>
+                        <div>
+                            <h3>Software Developer</h3>
+                            <p class="org">NS Software Solution, Sialkot</p>
+                            <ul>
+                                <li>Large-scale ERP, POS, distribution, and leasing applications in C# / .NET</li>
+                                <li>SQL Server schema design, stored procedures, and query tuning</li>
+                                <li>RDLC business and financial reports for operational decision-making</li>
+                                <li>Modernized legacy UI; improved background loading and search performance</li>
+                                <li>Full deployment: install, database setup, training, and ongoing support</li>
+                            </ul>
+                            <p class="award">Best Performance Award</p>
+                        </div>
+                    </li>
+                    <li class="reveal from-left">
+                        <div class="when">2022 — 2023</div>
+                        <div>
+                            <h3>Android Developer</h3>
+                            <p class="org">Web Expert Zone, Sialkot</p>
+                            <ul>
+                                <li>Native Android Java applications across the full development lifecycle</li>
+                                <li>Leasing and business mobile apps with offline data handling</li>
+                                <li>Client requirement gathering and delivery coordination</li>
+                            </ul>
+                            <p class="award">Best UI Designer Award</p>
+                        </div>
+                    </li>
+                </ol>
             </div>
-            <div>
-              <span>Now</span>
-              <strong>NS Software Solution</strong>
-            </div>
-            <div>
-              <span>Languages</span>
-              <strong>English Â· Urdu Â· Punjabi</strong>
-            </div>
-          </aside>
-        </div>
-      </section>
+        </section>
 
-      <section class="block" id="experience">
-        <div class="block-head">
-          <p class="kicker">Experience</p>
-          <h2>Where the work happened.</h2>
-        </div>
-        <ol class="timeline">
-          <li>
-            <div class="when">2023 â€” Present</div>
-            <div>
-              <h3>Software Developer</h3>
-              <p class="org">NS Software Solution, Sialkot</p>
-              <ul>
-                <li>Large-scale ERP, POS, distribution and leasing apps in C# / .NET</li>
-                <li>SQL Server schema design, stored procedures and query tuning</li>
-                <li>RDLC business and financial reports for daily decisions</li>
-                <li>Modernised legacy UI; faster background loading and search</li>
-                <li>Full deployment: install, database setup, training and support</li>
-              </ul>
-              <p class="award">Best Performance Award</p>
+        <section class="block" id="work">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <p class="kicker">Projects</p>
+                    <h2>Selected work</h2>
+                </div>
+                <div class="projects">
+                    <article class="reveal zoom d1"><span class="num">01</span><div><p class="tag">C# WinForms · SQL Server</p><h3>ERP System</h3><p>Purchase, sales, inventory, production, vouchers and ledgers — a full business cycle, not a demo screen.</p></div></article>
+                    <article class="reveal zoom d2"><span class="num">02</span><div><p class="tag">POS · Distribution</p><h3>POS &amp; Distribution</h3><p>Billing, stock control, barcode and reporting for counters that cannot freeze at 7pm.</p></div></article>
+                    <article class="reveal zoom d3"><span class="num">03</span><div><p class="tag">Desktop + Android</p><h3>Leasing Software + Mobile</h3><p>Installments and recovery on the desktop, with an Android field app for collectors who work offline.</p></div></article>
+                    <article class="reveal zoom d4"><span class="num">04</span><div><p class="tag">FYP · Android Java</p><h3>Grocery Management App</h3><p>Final-year project: a native Android app for grocery operations from shelf to sale.</p></div></article>
+                </div>
             </div>
-          </li>
-          <li>
-            <div class="when">2022 â€” 2023</div>
-            <div>
-              <h3>Android Developer</h3>
-              <p class="org">Web Expert Zone, Sialkot</p>
-              <ul>
-                <li>Native Android Java apps across the full development cycle</li>
-                <li>Leasing and business mobile apps with offline data handling</li>
-                <li>Client requirement gathering and delivery coordination</li>
-              </ul>
-              <p class="award">Best UI Designer Award</p>
-            </div>
-          </li>
-        </ol>
-      </section>
+        </section>
 
-      <section class="block" id="work">
-        <div class="block-head">
-          <p class="kicker">Selected work</p>
-          <h2>Systems people click two hundred times a day.</h2>
-        </div>
-        <div class="projects">
-          <article>
-            <span class="num">01</span>
-            <div>
-              <p class="tag">C# WinForms Â· SQL Server</p>
-              <h3>ERP System</h3>
-              <p>
-                Purchase, sales, inventory, production, vouchers and ledgers â€”
-                a full business cycle, not a demo screen.
-              </p>
+        <section class="block alt" id="skills">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <p class="kicker">Skills</p>
+                    <h2>What I ship with.</h2>
+                </div>
+                <div class="skill-wrap">
+                    <div class="reveal d1"><h3>Technical</h3><ul class="chips"><li>C# / .NET</li><li>SQL Server</li><li>WinForms</li><li>Database design</li><li>Java / Android</li><li>RDLC reporting</li><li>Git</li></ul></div>
+                    <div class="reveal d2"><h3>How I work</h3><ul class="chips"><li>Full-cycle SDLC</li><li>ERP &amp; POS</li><li>Query optimisation</li><li>UI / UX desktop &amp; mobile</li><li>Client analysis</li><li>Deployment &amp; support</li></ul></div>
+                    <div class="reveal d3"><h3>Tools</h3><ul class="chips"><li>Visual Studio</li><li>SQL Server</li><li>Android Studio</li><li>ADO.NET</li><li>RDLC</li><li>Java</li><li>Git</li></ul></div>
+                </div>
+                <div class="edu">
+                    <div class="reveal d1">
+                        <p class="kicker">Education</p>
+                        <ul>
+                            <li><strong>Bachelor’s</strong><span>Virtual University of Pakistan · 2020 — 2024</span></li>
+                            <li><strong>Intermediate</strong><span>Jinnah Islamia College · 2017 — 2019</span></li>
+                            <li><strong>Matriculation</strong><span>Cathedral School System · 2015 — 2017</span></li>
+                        </ul>
+                    </div>
+                    <div class="reveal d2">
+                        <p class="kicker">Awards</p>
+                        <ul>
+                            <li><strong>Best Performance Award</strong><span>NS Software Solutions</span></li>
+                            <li><strong>Best UI Designer Award</strong><span>Web Expert Zone</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </article>
-          <article>
-            <span class="num">02</span>
-            <div>
-              <p class="tag">POS Â· Distribution</p>
-              <h3>POS &amp; Distribution</h3>
-              <p>
-                Billing, stock control, barcode and reporting for counters that
-                cannot freeze at 7pm.
-              </p>
+        </section>
+
+        <section class="block contact" id="contact">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <p class="kicker">Contact</p>
+                    <h2>Let’s talk about your next system.</h2>
+                    <p class="lede">Tell me what the shop does. I’ll tell you what the software should do.</p>
+                </div>
+                <div class="contact-list">
+                    <a class="reveal d1" href="mailto:azanishfaq223@gmail.com"><span>Email</span><strong>azanishfaq223@gmail.com</strong></a>
+                    <a class="reveal d2" href="tel:+923312440035"><span>Phone</span><strong>+92 331 2440035</strong></a>
+                    <a class="reveal d3" href="https://wa.me/923312440035" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><strong>Message Azan</strong></a>
+                    <p class="reveal d4"><span>Location</span><strong>Gulshan Toheed Town, Shitabghar, Sialkot, Pakistan</strong></p>
+                    <a class="btn btn-gold reveal" href="Abdul_Azan_CV.pdf" download>Download CV (PDF)</a>
+                </div>
             </div>
-          </article>
-          <article>
-            <span class="num">03</span>
-            <div>
-              <p class="tag">Desktop + Android</p>
-              <h3>Leasing Software + Mobile</h3>
-              <p>
-                Installments and recovery on the desktop, with an Android field
-                app for collectors who work offline.
-              </p>
-            </div>
-          </article>
-          <article>
-            <span class="num">04</span>
-            <div>
-              <p class="tag">FYP Â· Android Java</p>
-              <h3>Grocery Management App</h3>
-              <p>
-                Final-year project: a native Android app for grocery operations
-                from shelf to sale.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="block" id="skills">
-        <div class="block-head">
-          <p class="kicker">Toolkit</p>
-          <h2>What I ship with.</h2>
-        </div>
-        <div class="skill-wrap">
-          <div>
-            <h3>Technical</h3>
-            <ul class="chips">
-              <li>C# / .NET</li>
-              <li>SQL Server</li>
-              <li>WinForms</li>
-              <li>Database design</li>
-              <li>Java / Android</li>
-              <li>RDLC reporting</li>
-              <li>Git</li>
-            </ul>
-          </div>
-          <div>
-            <h3>How I work</h3>
-            <ul class="chips">
-              <li>Full-cycle SDLC</li>
-              <li>ERP &amp; POS</li>
-              <li>Query optimisation</li>
-              <li>UI / UX desktop &amp; mobile</li>
-              <li>Client analysis</li>
-              <li>Deployment &amp; support</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="edu">
-          <div>
-            <p class="kicker">Education</p>
-            <ul>
-              <li>
-                <strong>Bachelorâ€™s</strong>
-                <span>Virtual University of Pakistan Â· 2020 â€” 2024</span>
-              </li>
-              <li>
-                <strong>Intermediate</strong>
-                <span>Jinnah Islamia College Â· 2017 â€” 2019</span>
-              </li>
-              <li>
-                <strong>Matriculation</strong>
-                <span>Cathedral School System Â· 2015 â€” 2017</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p class="kicker">Awards</p>
-            <ul>
-              <li>
-                <strong>Best Performance Award</strong>
-                <span>NS Software Solutions</span>
-              </li>
-              <li>
-                <strong>Best UI Designer Award</strong>
-                <span>Web Expert Zone</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="block contact" id="contact">
-        <div class="block-head">
-          <p class="kicker">Contact</p>
-          <h2>Need software for a real business?</h2>
-          <p class="lede">
-            Tell me what the shop does. Iâ€™ll tell you what the system should do.
-          </p>
-        </div>
-        <div class="contact-list">
-          <a href="mailto:azanishfaq223@gmail.com">
-            <span>Email</span>
-            <strong>azanishfaq223@gmail.com</strong>
-          </a>
-          <a href="tel:+923312440035">
-            <span>Phone</span>
-            <strong>+92 331 2440035</strong>
-          </a>
-          <a href="https://wa.me/923312440035" target="_blank" rel="noopener noreferrer">
-            <span>WhatsApp</span>
-            <strong>Message Azan</strong>
-          </a>
-          <p>
-            <span>Location</span>
-            <strong>Gulshan Toheed Town, Shitabghar, Sialkot, Pakistan</strong>
-          </p>
-        </div>
-      </section>
-
-      <footer class="foot">
-        <p>Â© <span id="year"></span> Abdul Azan</p>
-        <p>.NET Â· ERP Â· POS</p>
-      </footer>
+        </section>
     </main>
 
-<script>
-const year = document.getElementById("year");
-if (year) year.textContent = String(new Date().getFullYear());
+    <footer class="footer">
+        <div class="wrap footer-grid">
+            <div>
+                <p class="logo"><span>AA</span> Abdul Azan</p>
+                <p>.NET Software Developer<br />Sialkot, Pakistan</p>
+            </div>
+            <div>
+                <p class="foot-label">Navigate</p>
+                <a href="#about">About</a>
+                <a href="#work">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div>
+                <p class="foot-label">Contact</p>
+                <a href="mailto:azanishfaq223@gmail.com">azanishfaq223@gmail.com</a>
+                <a href="tel:+923312440035">+92 331 2440035</a>
+            </div>
+        </div>
+        <div class="wrap footer-bar">
+            <p>© 2026 Abdul Azan. All rights reserved.</p>
+            <p>.NET · ERP · POS</p>
+        </div>
+    </footer>
 
-const body = document.body;
-const menuBtn = document.querySelector(".menu-btn");
-const rail = document.getElementById("rail");
-
-if (menuBtn && rail) {
-  menuBtn.addEventListener("click", () => {
-    const open = body.classList.toggle("nav-open");
-    menuBtn.setAttribute("aria-expanded", String(open));
-  });
-
-  rail.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      body.classList.remove("nav-open");
-      menuBtn.setAttribute("aria-expanded", "false");
-    });
-  });
-}
-
-const navLinks = document.querySelectorAll("[data-nav]");
-const sections = [...navLinks]
-  .map((link) => document.getElementById(link.dataset.nav))
-  .filter(Boolean);
-
-const setActive = () => {
-  let current = "top";
-  sections.forEach((section) => {
-    if (section.getBoundingClientRect().top <= 140) current = section.id;
-  });
-  navLinks.forEach((link) => {
-    link.classList.toggle("active", link.dataset.nav === current);
-  });
+    <script>
+window.portfolio = {
+    ready: function () {
+        if (this._ready) { this.bindReveal(); return; }
+        this._ready = true;
+        this.bindReveal();
+        this.bindSpy();
+        this.bindAnchors();
+        this.bindProgress();
+        this.bindHeader();
+        this.bindParallax();
+        this.bindCounters();
+        this.bindType();
+        this.bindMenu();
+    },
+    bindMenu: function () {
+        var btn = document.querySelector(".menu-btn");
+        var nav = document.getElementById("site-nav");
+        if (!btn || !nav) return;
+        btn.addEventListener("click", function () {
+            var open = nav.classList.toggle("open");
+            btn.setAttribute("aria-expanded", String(open));
+        });
+        nav.querySelectorAll("a").forEach(function (a) {
+            a.addEventListener("click", function () {
+                nav.classList.remove("open");
+                btn.setAttribute("aria-expanded", "false");
+            });
+        });
+    },
+    bindAnchors: function () {
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest('a[href^="#"]');
+            if (!a) return;
+            var id = a.getAttribute("href");
+            if (!id || id.length < 2) return;
+            var el = document.querySelector(id);
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    },
+    bindReveal: function () {
+        var nodes = document.querySelectorAll(".reveal:not(.in)");
+        if (!nodes.length) return;
+        if (!("IntersectionObserver" in window)) { nodes.forEach(function (el) { el.classList.add("in"); }); return; }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("in");
+                io.unobserve(entry.target);
+            });
+        }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
+        nodes.forEach(function (el) { io.observe(el); });
+    },
+    bindSpy: function () {
+        var links = Array.prototype.slice.call(document.querySelectorAll(".site-nav a[href^='#']"));
+        var sections = links.map(function (a) { return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
+        if (!sections.length) return;
+        var setActive = function () {
+            var y = window.scrollY + 120;
+            var current = sections[0];
+            sections.forEach(function (sec) { if (sec.offsetTop <= y) current = sec; });
+            links.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + current.id); });
+        };
+        window.addEventListener("scroll", setActive, { passive: true });
+        setActive();
+    },
+    bindHeader: function () {
+        var header = document.querySelector(".header");
+        if (!header) return;
+        var update = function () { header.classList.toggle("scrolled", window.scrollY > 12); };
+        window.addEventListener("scroll", update, { passive: true });
+        update();
+    },
+    bindProgress: function () {
+        var bar = document.querySelector(".progress span");
+        if (!bar) return;
+        var update = function () {
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+        };
+        window.addEventListener("scroll", update, { passive: true });
+        update();
+    },
+    bindParallax: function () {
+        var photo = document.querySelector(".portrait img");
+        if (!photo) return;
+        window.addEventListener("scroll", function () {
+            photo.style.transform = "translateY(" + Math.min(window.scrollY * 0.08, 36) + "px) scale(1.04)";
+        }, { passive: true });
+    },
+    bindCounters: function () {
+        var items = document.querySelectorAll("[data-count]");
+        var run = function (el) {
+            var end = parseInt(el.getAttribute("data-count"), 10);
+            if (!end) return;
+            var suffix = el.getAttribute("data-suffix") || "";
+            var t0 = performance.now();
+            var tick = function (now) {
+                var p = Math.min((now - t0) / 900, 1);
+                el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+        };
+        if (!("IntersectionObserver" in window)) { items.forEach(run); return; }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                run(entry.target);
+                io.unobserve(entry.target);
+            });
+        }, { threshold: 0.5 });
+        items.forEach(function (el) { io.observe(el); });
+    },
+    bindType: function () {
+        var el = document.querySelector(".typed");
+        if (!el) return;
+        var text = el.getAttribute("data-text") || "";
+        var i = 0;
+        el.textContent = "";
+        var tick = function () {
+            i += 1;
+            el.textContent = text.slice(0, i);
+            if (i < text.length) window.setTimeout(tick, 55);
+        };
+        window.setTimeout(tick, 450);
+    }
 };
-
-window.addEventListener("scroll", setActive, { passive: true });
-setActive();
-
+window.portfolio.ready();
     </script>
-  </body>
+</body>
 </html>
-
