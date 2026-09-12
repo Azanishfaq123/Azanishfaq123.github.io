@@ -1,0 +1,43 @@
+ABDUL AZAN — Visual Studio Portfolio
+====================================
+
+OPEN IN VISUAL STUDIO
+1. Double-click:  AbdulAzan.Portfolio.sln
+2. Wait for restore (bottom status bar).
+3. Top toolbar profile must be: AbdulAzan.Portfolio  (HTTP, not https)
+4. Press F5. Browser opens at http://localhost:5088
+
+If Visual Studio still shows an error, close it and double-click RUN.bat instead.
+
+CHANGE TEXT (anytime)
+Open:  AbdulAzan.Portfolio\Data\ProfileData.cs
+Edit name, jobs, projects, email, phone. Save. Press F5.
+
+CHANGE PHOTO
+Replace:  AbdulAzan.Portfolio\wwwroot\images\pic.jpeg
+Keep the same file name.
+
+CHANGE CV PDF
+Replace:  AbdulAzan.Portfolio\wwwroot\files\Abdul_Azan_CV.pdf
+Keep the same file name.
+
+GITHUB PAGES (free website)
+1. Create a GitHub repo. Best URL:
+     https://YOURNAME.github.io
+   Create the repo named exactly: YOURNAME.github.io
+2. In GitHub repo: Settings → Pages → Source = GitHub Actions
+3. Push this folder (the files next to the .sln).
+4. After the Action turns green, open:
+     https://YOURNAME.github.io
+
+If the repo name is NOT yourname.github.io
+(example: my-portfolio), open:
+  AbdulAzan.Portfolio\wwwroot\index.html
+and change:
+  <base href="/" />
+to:
+  <base href="/my-portfolio/" />
+Then push again.
+
+Need ASP.NET and web development workload in Visual Studio 2022.
+.NET 8 SDK is already on this PC.
