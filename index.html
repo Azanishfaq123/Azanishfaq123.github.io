@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdul Azan — .NET Software Developer</title>
+    <title>Abdul Azan â€” .NET Software Developer</title>
     <meta
       name="description"
       content="Abdul Azan is a .NET software developer in Sialkot building ERP, POS, and business systems that companies use every day."
@@ -18,7 +18,548 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <style>
+:root {
+  --bg: #081018;
+  --panel: #101c28;
+  --ink: #f3efe6;
+  --muted: #8d9bab;
+  --line: rgba(243, 239, 230, 0.1);
+  --gold: #c4a574;
+  --gold-2: #e4d2b0;
+  --cream: #e8e2d6;
+  --rail: 240px;
+  --max: 1040px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Outfit, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -40px;
+  z-index: 80;
+  padding: 8px 12px;
+  background: var(--gold);
+  color: #1a140c;
+  font-weight: 600;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.rail {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--rail);
+  padding: 36px 28px;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 92%, #000);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  z-index: 20;
+}
+
+.mark {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rail-nav a {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.rail-nav a:hover,
+.rail-nav a.active {
+  color: var(--ink);
+}
+
+.rail-foot {
+  margin-top: auto;
+}
+
+.cv {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+}
+
+.cv:hover {
+  border-bottom-color: var(--gold);
+}
+
+.rail-foot p {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+main {
+  margin-left: var(--rail);
+  padding: 48px 7vw 40px;
+}
+
+.kicker {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(3.4rem, 8vw, 6.4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  max-width: 22ch;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 400px);
+  gap: 64px;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  padding: 28px 0 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.role {
+  margin-top: 8px;
+  font-size: 1.2rem;
+  color: var(--gold-2);
+}
+
+.lede {
+  margin-top: 22px;
+  max-width: 42ch;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #1a140c;
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.stats dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.stats dd {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.7rem;
+}
+
+.print {
+  background: var(--cream);
+  padding: 12px 12px 44px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.38);
+  transform: rotate(1.2deg);
+  width: min(100%, 400px);
+  justify-self: end;
+}
+
+.print img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+.print figcaption {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  color: #5c5348;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.block {
+  padding: 88px 0 8px;
+}
+
+.block-head {
+  margin-bottom: 36px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.9fr;
+  gap: 28px;
+}
+
+.about-grid > p,
+.timeline p,
+.projects p,
+.edu span {
+  color: var(--muted);
+}
+
+.facts {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.timeline {
+  list-style: none;
+  display: grid;
+  gap: 36px;
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 28px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+
+.when {
+  color: var(--gold);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.org {
+  margin: 6px 0 14px;
+}
+
+.timeline ul {
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.award {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--gold-2);
+  font-size: 0.9rem;
+}
+
+.projects {
+  display: grid;
+  gap: 0;
+}
+
+.projects article {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 20px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  transition: padding-left 0.25s, background 0.25s;
+}
+
+.projects article:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.projects article:hover {
+  padding-left: 12px;
+}
+
+.num {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+
+.tag {
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.projects h3,
+.timeline h3,
+.skill-wrap h3 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.skill-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.skill-wrap h3 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chips li {
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  color: var(--gold-2);
+  font-size: 0.92rem;
+}
+
+.edu {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 36px;
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+}
+
+.edu ul {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.edu strong {
+  display: block;
+}
+
+.contact .lede {
+  margin-top: 16px;
+}
+
+.contact-list {
+  display: grid;
+  gap: 0;
+}
+
+.contact-list a,
+.contact-list p {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.contact-list p:last-child,
+.contact-list a:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-list span {
+  color: var(--muted);
+  min-width: 110px;
+}
+
+.contact-list a:hover strong {
+  color: var(--gold);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 80px;
+  padding: 24px 0 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 980px) {
+  .rail {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  body.nav-open .rail {
+    transform: none;
+  }
+
+  .menu-btn {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 30;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    cursor: pointer;
+  }
+
+  .menu-btn span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--ink);
+  }
+
+  .menu-btn span + span {
+    margin-top: 6px;
+  }
+
+  main {
+    margin-left: 0;
+    padding: 28px 6vw 32px;
+  }
+
+  .hero,
+  .about-grid,
+  .timeline li,
+  .skill-wrap,
+  .edu,
+  .contact-list a,
+  .contact-list p,
+  .stats,
+  .foot {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .hero {
+    min-height: auto;
+    gap: 36px;
+  }
+
+  .print {
+    max-width: 420px;
+  }
+
+  .contact-list a,
+  .contact-list p {
+    align-items: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .projects article {
+    transition: none;
+  }
+}
+
+    </style>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -47,12 +588,12 @@
     <main id="main">
       <section class="hero" id="top">
         <div class="hero-copy">
-          <p class="kicker">NS Software Solution · Sialkot</p>
+          <p class="kicker">NS Software Solution Â· Sialkot</p>
           <h1>Abdul Azan</h1>
           <p class="role">.NET Software Developer</p>
           <p class="lede">
             Building ERP, POS and business solutions that companies rely on
-            every day — desktop systems, SQL Server, and the reports people
+            every day â€” desktop systems, SQL Server, and the reports people
             actually print.
           </p>
           <div class="hero-actions">
@@ -95,21 +636,21 @@
         </div>
         <div class="about-grid">
           <p>
-            I’m a results-driven developer with 3+ years designing
+            Iâ€™m a results-driven developer with 3+ years designing
             business-critical desktop and mobile applications. I specialise in
-            C# / .NET (WinForms) and SQL Server — schema design, query
+            C# / .NET (WinForms) and SQL Server â€” schema design, query
             tuning, and RDLC reporting.
           </p>
           <p>
             Most of my work is ERP, POS, distribution and leasing software that
             shops and offices use all day. I write clean, maintainable code
-            with a bias for speed, and I’ve been recognised for both
+            with a bias for speed, and Iâ€™ve been recognised for both
             performance and UI design.
           </p>
           <aside class="facts">
             <div>
               <span>Focus</span>
-              <strong>ERP · POS · SQL</strong>
+              <strong>ERP Â· POS Â· SQL</strong>
             </div>
             <div>
               <span>Now</span>
@@ -117,7 +658,7 @@
             </div>
             <div>
               <span>Languages</span>
-              <strong>English · Urdu · Punjabi</strong>
+              <strong>English Â· Urdu Â· Punjabi</strong>
             </div>
           </aside>
         </div>
@@ -130,7 +671,7 @@
         </div>
         <ol class="timeline">
           <li>
-            <div class="when">2023 — Present</div>
+            <div class="when">2023 â€” Present</div>
             <div>
               <h3>Software Developer</h3>
               <p class="org">NS Software Solution, Sialkot</p>
@@ -145,7 +686,7 @@
             </div>
           </li>
           <li>
-            <div class="when">2022 — 2023</div>
+            <div class="when">2022 â€” 2023</div>
             <div>
               <h3>Android Developer</h3>
               <p class="org">Web Expert Zone, Sialkot</p>
@@ -169,10 +710,10 @@
           <article>
             <span class="num">01</span>
             <div>
-              <p class="tag">C# WinForms · SQL Server</p>
+              <p class="tag">C# WinForms Â· SQL Server</p>
               <h3>ERP System</h3>
               <p>
-                Purchase, sales, inventory, production, vouchers and ledgers —
+                Purchase, sales, inventory, production, vouchers and ledgers â€”
                 a full business cycle, not a demo screen.
               </p>
             </div>
@@ -180,7 +721,7 @@
           <article>
             <span class="num">02</span>
             <div>
-              <p class="tag">POS · Distribution</p>
+              <p class="tag">POS Â· Distribution</p>
               <h3>POS &amp; Distribution</h3>
               <p>
                 Billing, stock control, barcode and reporting for counters that
@@ -202,7 +743,7 @@
           <article>
             <span class="num">04</span>
             <div>
-              <p class="tag">FYP · Android Java</p>
+              <p class="tag">FYP Â· Android Java</p>
               <h3>Grocery Management App</h3>
               <p>
                 Final-year project: a native Android app for grocery operations
@@ -249,16 +790,16 @@
             <p class="kicker">Education</p>
             <ul>
               <li>
-                <strong>Bachelor’s</strong>
-                <span>Virtual University of Pakistan · 2020 — 2024</span>
+                <strong>Bachelorâ€™s</strong>
+                <span>Virtual University of Pakistan Â· 2020 â€” 2024</span>
               </li>
               <li>
                 <strong>Intermediate</strong>
-                <span>Jinnah Islamia College · 2017 — 2019</span>
+                <span>Jinnah Islamia College Â· 2017 â€” 2019</span>
               </li>
               <li>
                 <strong>Matriculation</strong>
-                <span>Cathedral School System · 2015 — 2017</span>
+                <span>Cathedral School System Â· 2015 â€” 2017</span>
               </li>
             </ul>
           </div>
@@ -283,7 +824,7 @@
           <p class="kicker">Contact</p>
           <h2>Need software for a real business?</h2>
           <p class="lede">
-            Tell me what the shop does. I’ll tell you what the system should do.
+            Tell me what the shop does. Iâ€™ll tell you what the system should do.
           </p>
         </div>
         <div class="contact-list">
@@ -307,11 +848,52 @@
       </section>
 
       <footer class="foot">
-        <p>© <span id="year"></span> Abdul Azan</p>
-        <p>.NET · ERP · POS</p>
+        <p>Â© <span id="year"></span> Abdul Azan</p>
+        <p>.NET Â· ERP Â· POS</p>
       </footer>
     </main>
 
-    <script src="js/main.js"></script>
+<script>
+const year = document.getElementById("year");
+if (year) year.textContent = String(new Date().getFullYear());
+
+const body = document.body;
+const menuBtn = document.querySelector(".menu-btn");
+const rail = document.getElementById("rail");
+
+if (menuBtn && rail) {
+  menuBtn.addEventListener("click", () => {
+    const open = body.classList.toggle("nav-open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+
+  rail.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      body.classList.remove("nav-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+const navLinks = document.querySelectorAll("[data-nav]");
+const sections = [...navLinks]
+  .map((link) => document.getElementById(link.dataset.nav))
+  .filter(Boolean);
+
+const setActive = () => {
+  let current = "top";
+  sections.forEach((section) => {
+    if (section.getBoundingClientRect().top <= 140) current = section.id;
+  });
+  navLinks.forEach((link) => {
+    link.classList.toggle("active", link.dataset.nav === current);
+  });
+};
+
+window.addEventListener("scroll", setActive, { passive: true });
+setActive();
+
+    </script>
   </body>
 </html>
+
